@@ -1,0 +1,21 @@
+.btn{
+    display: block;
+    width: 30%;
+    font-size:1rem;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #fff;
+    background-color: royalblue;
+    padding: 1rem 0;
+    margin: 1rem auto;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2%;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+}
+
+.btn:hover{
+    background-color: orange;
+}

@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+  }
+  html,
+  body{
+    height: 100%;
+  }
+
+  html,
+  body,
+  #root,
+  .App,
+  .highpoint{
+    height: 100%;
+
+  }
+  
+  body{
+    font-family:serif;
+  }
+
+  .thebody{
+    
+    width:100%;
+    
+    margin: 0 auto;
+  }
+  
