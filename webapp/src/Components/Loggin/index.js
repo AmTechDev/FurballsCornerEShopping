@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import '../style.scss';
 import Buttons from './../Forms/Button';
 import SubsContainer from './../SubsContainer';
@@ -9,58 +9,46 @@ import TextfieldForm from './../Forms/TextfieldForm';
 //firebase Authentication
 import {signInWithGoogle, auth} from '../../firebase/code';
 
-const initialState = {
-    email:'',
-    password:''
-};
 
 
-class Loggin extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            ...initialState
-        };
-        this.handleChange = this.handleChange.bind(this);
+const Loggin = props =>{
+    const[email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const defaultform = () =>{
+        setEmail('');
+        setPassword('');
     }
-    handleChange(e){
-        const {name, value} = e.target;
 
-        this.setState({
-            [name]: value
-        });
-    }
-    handleSubmit = async e =>{
+
+const handleSubmit = async e =>{
         e.preventDefault();
-        const { email, password} = this.state;
+        
         try{
             await auth.signInWithEmailAndPassword(email, password);
-            this.setState({
-                ...initialState
-            });
+            defaultform()
+            props.history.push('/');
 
         } catch(err){
 
         }
     }
-    render(){
 
-        const { email, password } = this.state;
 
         const configSubsContainer = {headline:'Login'};
     return(
         <SubsContainer {...configSubsContainer}>
             <div className="wrapForm">
             <div className="formContainer">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                 
                     <TextfieldForm 
                         type="email"
                         name="email"
                         value={email}
                         placeholder="Enter Email"
-                        handleChange={this.handleChange}
+                        handleChange={e => setEmail(e.target.value)}
                     />
 
                     <TextfieldForm 
@@ -68,7 +56,7 @@ class Loggin extends Component{
                         name="password"
                         value={ password}
                         placeholder="Enter Password"
-                        handleChange={this.handleChange}
+                        handleChange={e => setPassword(e.target.value)}
                     />
                    
 
@@ -106,7 +94,7 @@ class Loggin extends Component{
 
         </SubsContainer>
     );
-    };
-};
+}
 
-export default Loggin;
+
+export default withRouter(Loggin);

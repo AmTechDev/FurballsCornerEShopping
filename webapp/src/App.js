@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+
+import WithAuth from './OrderedComponent/withAuth';
 import MainDesign from './Designs/MainDesigns';
 import HomeDesign from './Designs/HomeDesign';
 import Timeline from './Components/Timeline';
@@ -7,6 +9,7 @@ import Home from './Pages/Home';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import RecoverPass from './Pages/RecoverPass';
+import ControlPanel from './Pages/ControlPanel';
 import './main.scss';
 
 //redux
@@ -17,36 +20,52 @@ import { setCurrentUser} from './redux/User/actions';
 import { auth, handleUserAccount } from './firebase/code';
 
 
-class App extends Component {
+const App = props => {
   
-  authPerciever = null;
+  
+  //componentDidMount(){
+   // const { setCurrentUser } = this.props;
+   // this.authPerciever = auth.onAuthStateChanged( async userAuth =>{
+    //  if (userAuth){
+    //    const userRef = await handleUserAccount(userAuth);
+     //   userRef.onSnapshot(snapshot => {
+     //     this.props.setCurrentUser({
+     //       id: snapshot.id,
+     //         ...snapshot.data()
+    //      });
+           
+    //    })
+    //  }
+   //  this.props.setCurrentUser(userAuth);
+  //  });
+ // }; 
 
-  componentDidMount(){
-    const { setCurrentUser } = this.props;
-    this.authPerciever = auth.onAuthStateChanged( async userAuth =>{
+  const { setCurrentUser } = props;
+  const { currentUser } = props;
+
+  useEffect(() => {
+    //return ( ) => {
+      
+    const authPerciever = auth.onAuthStateChanged( async userAuth =>{
       if (userAuth){
         const userRef = await handleUserAccount(userAuth);
         userRef.onSnapshot(snapshot => {
-          this.props.setCurrentUser({
+          props.setCurrentUser({
             id: snapshot.id,
               ...snapshot.data()
           });
            
         })
       }
-     this.props.setCurrentUser(userAuth);
-    });
+      props.setCurrentUser(userAuth);
+     });
+      return () => {
+       authListener();
+      };
+    //};
 
-  };
-  componentWillUnmount(){
-    this.authPerciever;
-
-  }
-
-  render(){
-
-    const { currentUser } = this.props;
-
+  }, [])
+ 
   return (
     <div className="App">
        <Switch>
@@ -59,7 +78,7 @@ class App extends Component {
           )
           } />
           <Route path="/Login" 
-            render={() =>  currentUser ? <Redirect to="/" /> : (
+            render={() =>   (
               <MainDesign >
                 <Login />
               </MainDesign>
@@ -79,8 +98,14 @@ class App extends Component {
 
           )} />
 
-       
-        
+          <Route path="/ControlPanel" render={() => (
+            <WithAuth>
+              <MainDesign >
+               <ControlPanel />
+              </MainDesign>
+            </WithAuth>
+          )} />
+      
        </Switch>
       
 
@@ -90,7 +115,7 @@ class App extends Component {
     </div>
   );
  };
-};
+
 
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser

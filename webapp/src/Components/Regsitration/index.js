@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import '../style.scss';
 
 //Forms
@@ -18,33 +19,30 @@ const initialState = {
     errorRecognition: []
 };
 
-class Registration extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            ...initialState
-        };
+const Registration = props => {
 
-        this.handleChange = this.handleChange.bind(this);
+    const [displayName, setDisplayName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errorRecognition, setErrorRecognition] = useState('');
+
+    const reset = () => {
+        setDisplayName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setErrorRecognition([]);
     }
 
-    handleChange(e){
-        const {name, value} = e.target;
 
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmitForm = async event => {
+    const handleSubmitForm = async event => {
         event.preventDefault();
-        const { displayName, email, password, confirmPassword } = this.state; 
+       
 
         if (password !== confirmPassword){
             const err = ['Password Doesn\'t Match'];
-            this.setState({
-                errorRecognition: err
-            });
+            setErrorRecognition(err);
             return;
         }
         try{
@@ -52,9 +50,8 @@ class Registration extends Component {
 
             await handleUserAccount(user, { displayName});
 
-            this.setState({
-                ...initialState
-            });
+            reset();
+            props.history.push('/');
 
 
 
@@ -62,9 +59,8 @@ class Registration extends Component {
 
         }
     }
-    render(){
 
-        const { displayName, email, password, confirmPassword, errorRecognition } = this.state;
+       
         const configSubsContainer = {headline:'Registration'};
         return(
             <SubsContainer {...configSubsContainer}>
@@ -82,14 +78,14 @@ class Registration extends Component {
                             })}
                         </ul>
                     )}
-                    <form onSubmit={this.handleSubmitForm}>
+                    <form onSubmit={handleSubmitForm}>
 
                         <TextfieldForm 
                         type="text"
                         name="displayName"
                         value={displayName}
                         placeholder="Enter Fullname"
-                        onChange={this.handleChange}
+                        handleChange={e => setDisplayName(e.target.value)}
                         
                         />
 
@@ -98,7 +94,7 @@ class Registration extends Component {
                         name="email"
                         value={email}
                         placeholder="Enter Email"
-                        onChange={this.handleChange}
+                        handleChange={e => setEmail(e.target.value)}
                         
                         />
 
@@ -107,7 +103,7 @@ class Registration extends Component {
                         name="password"
                         value={password}
                         placeholder="Enter Password"
-                        onChange={this.handleChange}
+                        handleChange={e => setPassword(e.target.value)}
                         
                         />
 
@@ -116,7 +112,7 @@ class Registration extends Component {
                         name="confirmPassword"
                         value={confirmPassword}
                         placeholder="Confirm Password"
-                        onChange={this.handleChange}
+                        handleChange={e => setConfirmPassword(e.target.value)}
                         
                         />
 
@@ -147,6 +143,6 @@ class Registration extends Component {
            </SubsContainer>
         );
     }
-}
 
-export default Registration;
+
+export default withRouter(Registration);

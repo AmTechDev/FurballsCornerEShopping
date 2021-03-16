@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { useState} from 'react';
 import '../style.scss';
 import { withRouter } from 'react-router-dom';
 
@@ -9,55 +9,39 @@ import Button from './../Forms/Button';
 //Firebase Authentication
 import { auth } from './../../firebase/code'
 
-const initialState = {
-    email: '', 
-    errorRecognition: [] 
-};
-class Retrieve extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            ...initialState
-        };
-        this.handleChange = this.handleChange.bind(this);
-    }
 
-    handleChange(e){
-        const {name, value } = e.target;
-        this.setState({ [name]: value })
-    }
+const Retrieve = props => {
+    const [email, setEmail] = useState('');
+    const [errorRecognition, setErrorRecognition] = useState([])
 
-    handleSubmit = async (e) => {
+
+   const handleSubmit = async (e) => {
         e.preventDefault();
 
         try{
-            const{ email } = this.state;
-
+          
             const config = {
                 url: 'http://localhost:3000/Login'
             };
 
             await auth.sendPasswordResetEmail(email, config)
              .then(() => {
-                 this.props.history.push('/login');
+                 props.history.push('/login');
 
              })
              .catch(() => {
                  
                  const err = ['There\'s no account assosiating with this email.'];
-                 this.setState({
-                    errorRecognition: err
-                 });
-
+                 setErrorRecognition(err);
              });
+
+         
 
         }catch(err){
 
         }
     }
 
-    render(){
-        const{ email, errorRecognition } = this.state;
         const configSubsContainer = {headline:'Forget Password'};
         return(
             <SubsContainer {...configSubsContainer}>
@@ -76,13 +60,13 @@ class Retrieve extends Component{
                         </ul>
                     )}
 
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <TextfieldForm 
                             type="email"
                             name="email"
                             value={email}
                             placeholder="Enter Email"
-                            onChange={this.handleChange}
+                            handleChange={e => setEmail(e.target.value)}
                         />
                         <Button type="submit">
                             Send Link
@@ -94,6 +78,6 @@ class Retrieve extends Component{
 
         );
     }
-}
+
 
 export default withRouter(Retrieve);

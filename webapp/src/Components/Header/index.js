@@ -55,7 +55,7 @@ const Header = props => {
                      <NavLink to="/" className="main-nav" activeClassName="main-nav-active">Home</NavLink>
                      <NavLink to="#" className="main-nav" activeClassName="main-nav-active">About Us</NavLink>
                      <li><a href="#category">Category</a></li>
-                     <NavLink to="/Login" className="main-nav" activeClassName="main-nav-active">Account</NavLink>
+                     <NavLink to="/ControlPanel" className="main-nav" activeClassName="main-nav-active">Account</NavLink>
                      <NavLink to="/Register" onClick={() => auth.signOut()} className="main-nav" activeClassName="main-nav-active">Logout</NavLink>
                  </ul>
                 )}
