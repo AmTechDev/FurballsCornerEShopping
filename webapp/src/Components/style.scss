@@ -3,6 +3,7 @@ header{
     height: 4vh;
     text-align: right;
     margin-top: 0.8rem; 
+    margin-right: 0.5rem;
 }
 .head{
   color:royalblue;
@@ -115,7 +116,7 @@ nav{
   
   .nav-links{
     display: flex;
-    width: 30%;
+    width: 35%;
     height: 100%;
     justify-content: space-around;
     align-items: center;
@@ -186,13 +187,14 @@ nav{
   text-align: center;
 }
 .socialLogin button{
+  
+  text-align: center;
   height: 60px;
   width: 60px;
   border-radius: 50%;
   .row button{
     display: flex;
-  }
- 
+}
 }
 
 /*-------------------TIMELINE----------------------------------------*/
@@ -294,10 +296,13 @@ nav{
   object-fit: cover;
   object-position: corner;
 }
-.category-box a img:hover{
+.category-box a img:hover {
   background-color: lightskyblue;
+  opacity: 60%;
+  
 
 }
+.cate
 
 .item span{
   font-size: 1rem;
