@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import '../style.scss';
 
 //Forms
@@ -9,7 +9,7 @@ import Button from './../Forms/Button';
 
 
 //Firebase Authentication
-import{ auth, handleUserAccount} from './../../firebase/code';
+import{ signInWithGoogle,auth, handleUserAccount} from './../../firebase/code';
 
 const initialState = {
     displayName:'',
@@ -119,6 +119,11 @@ const Registration = props => {
                         <Button type="submit">
                             Register
                         </Button>
+                        <Link to="/Login">
+                            <Button type="button">
+                                Login
+                             </Button>
+                         </Link>
 
                         <div className="labelsocial">
                         <span><p>or connect with</p></span>
@@ -126,7 +131,7 @@ const Registration = props => {
 
                     <div className="socialLogin">
                         <div className="row">
-                            <Button> 
+                            <Button onClick={signInWithGoogle}> 
                                 <i className="fa fa-google"></i> 
                             </Button> 
                         </div>

@@ -6,7 +6,7 @@ import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
 
 
-//firebase Authentication
+//Firebase Authentication
 import {signInWithGoogle, auth} from '../../firebase/code';
 
 
@@ -63,6 +63,12 @@ const handleSubmit = async e =>{
                     <Buttons type="submit">
                         Login
                     </Buttons>
+                    <Link to="/Register">
+                        <Buttons type="button">
+                            Register
+                        </Buttons>
+                    </Link>
+                   
                     <div className="link">
                         <Link to="/RecoverPass">
                             Forgot Password
