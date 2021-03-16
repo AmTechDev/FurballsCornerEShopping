@@ -58,7 +58,12 @@ const handleSubmit = async e =>{
                         placeholder="Enter Password"
                         handleChange={e => setPassword(e.target.value)}
                     />
-                   
+
+                    <div className="link">
+                        <Link to="/RecoverPass">
+                            Forgot Password
+                        </Link>
+                    </div>
 
                     <Buttons type="submit">
                         Login
@@ -69,11 +74,7 @@ const handleSubmit = async e =>{
                         </Buttons>
                     </Link>
                    
-                    <div className="link">
-                        <Link to="/RecoverPass">
-                            Forgot Password
-                        </Link>
-                    </div>
+                    
 
                     <div className="labelsocial">
                         <span><p>or connect with</p></span>
