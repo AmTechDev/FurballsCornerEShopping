@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import WithAuth from './OrderedComponent/withAuth';
@@ -13,7 +14,6 @@ import ControlPanel from './Pages/ControlPanel';
 import './main.scss';
 
 //redux
-import { connect } from 'react-redux';
 import { setCurrentUser} from './redux/User/actions';
 
 //Firebase Authentication
@@ -40,8 +40,7 @@ const App = props => {
   //  });
  // }; 
 
-  const { setCurrentUser } = props;
-  const { currentUser } = props;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     //return ( ) => {
@@ -50,17 +49,17 @@ const App = props => {
       if (userAuth){
         const userRef = await handleUserAccount(userAuth);
         userRef.onSnapshot(snapshot => {
-          props.setCurrentUser({
+          dispatch(setCurrentUser({
             id: snapshot.id,
               ...snapshot.data()
-          });
+          }));
            
         })
       }
-      props.setCurrentUser(userAuth);
+      setCurrentUser(userAuth);
      });
       return () => {
-       authListener();
+       authPerciever();
       };
     //};
 
@@ -79,23 +78,14 @@ const App = props => {
           } />
           <Route path="/Login" 
             render={() =>   (
-              <MainDesign >
                 <Login />
-              </MainDesign>
-
             )} />
-          <Route path="/Register" render={() => currentUser ? <Redirect to="/" /> : (
-            <MainDesign >
+          <Route path="/Register" render={() => (
               <Register />
-            </MainDesign>
-
           )} />
 
           <Route path="/RecoverPass" render={() => (
-            <MainDesign >
               <RecoverPass />
-            </MainDesign>
-
           )} />
 
           <Route path="/ControlPanel" render={() => (
@@ -116,12 +106,4 @@ const App = props => {
   );
  };
 
-
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
-});
-
-const mapDispatchToProps = dispath => ({
-  setCurrentUser: user => dispath(setCurrentUser(user))
-});
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

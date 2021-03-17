@@ -1,20 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { logInUser } from './../../redux/User/actions';
 import '../style.scss';
+//Form
 import Buttons from './../Forms/Button';
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
-
-
 //Firebase Authentication
-import {signInWithGoogle, auth, signInWithFacebook} from '../../firebase/code';
+import {signInWithGoogle, signInWithFacebook} from '../../firebase/code';
 
 
-
+const mapState = ({ user }) => ({
+    logInSuccess:user.logInSuccess,
+    logInError:user.logInError
+    
+});
 
 const Loggin = props =>{
+    const { logInSuccess, logInError } = useSelector(mapState);
+    const dispatch = useDispatch();
     const[email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorRecognition, setErrorRecognition] = useState('');
+
+    useEffect(() =>{
+        if(logInSuccess){
+            defaultform()
+            props.history.push('/');
+        }
+
+    }, [logInSuccess]);
+    useEffect(() =>{
+        if(logInError){
+            if(Array.isArray(logInError) && logInError.length > 0){
+                setErrorRecognition(logInError);
+            }
+        }
+
+    }, [logInError]);
 
     const defaultform = () =>{
         setEmail('');
@@ -24,15 +48,8 @@ const Loggin = props =>{
 
 const handleSubmit = async e =>{
         e.preventDefault();
+        dispatch(logInUser({email, password}));
         
-        try{
-            await auth.signInWithEmailAndPassword(email, password);
-            defaultform()
-            props.history.push('/');
-
-        } catch(err){
-
-        }
     }
 
 
@@ -41,6 +58,18 @@ const handleSubmit = async e =>{
         <SubsContainer {...configSubsContainer}>
             <div className="wrapForm">
             <div className="formContainer">
+            {errorRecognition.length > 0 && (
+                        <ul>
+                            {errorRecognition.map((err, index) => {
+                                return (
+                                    <li key={index}>
+                                        {err}
+                                    </li>
+                                )
+
+                            })}
+                        </ul>
+                    )}
                 <form onSubmit={handleSubmit}>
                 
                     <TextfieldForm 

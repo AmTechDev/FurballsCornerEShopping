@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { registerUser} from './../../redux/User/actions';
 import '../style.scss';
-
 //Forms
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
 import Button from './../Forms/Button';
-
-
 //Firebase Authentication
-import{ signInWithGoogle,auth, handleUserAccount} from './../../firebase/code';
+import{ signInWithGoogle,auth, handleUserAccount, signInWithFacebook} from './../../firebase/code';
 
 const initialState = {
     displayName:'',
@@ -19,13 +18,31 @@ const initialState = {
     errorRecognition: []
 };
 
+const mapState = ({ user }) => ({
+    registerSuccess: user.registerSuccess,
+    registerError: user.registerError
+});
 const Registration = props => {
 
+    const { registerSuccess,registerError} = useSelector(mapState);
+    const dispatch = useDispatch();
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorRecognition, setErrorRecognition] = useState('');
+
+    useEffect(() => {
+        if (registerSuccess){
+            reset();
+            props.history.push('/');
+        }
+    }, [registerSuccess]);
+    useEffect(() => {
+        if(Array.isArray(registerError) && registerError.length > 0){
+            setErrorRecognition(registerError);
+        }
+    }, [registerError]);
 
     const reset = () => {
         setDisplayName('');
@@ -36,28 +53,16 @@ const Registration = props => {
     }
 
 
-    const handleSubmitForm = async event => {
+    const handleSubmitForm =  event => {
         event.preventDefault();
+        dispatch(registerUser({
+            displayName,
+            email,
+            password,
+            confirmPassword
+        }));
        
 
-        if (password !== confirmPassword){
-            const err = ['Password Doesn\'t Match'];
-            setErrorRecognition(err);
-            return;
-        }
-        try{
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-            await handleUserAccount(user, { displayName});
-
-            reset();
-            props.history.push('/');
-
-
-
-        } catch(err){
-
-        }
     }
 
        
@@ -136,7 +141,7 @@ const Registration = props => {
                             </Button> 
                         </div>
                         <div className="row">
-                            <Button onClick={signInWithGoogle}> 
+                            <Button onClick={signInWithFacebook}> 
                                 <i className="fa fa-facebook"></i> 
                             </Button> 
                         </div>

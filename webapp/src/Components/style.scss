@@ -21,6 +21,10 @@ nav{
     background-color:royalblue;
     display: flex;
   }
+
+.navbar{
+  display: none;
+}
   
   .logo{
     width:50%;
@@ -449,30 +453,33 @@ nav{
       position: relative;
   }
   .navbar{
-      position: absolute;
-      cursor: pointer;
-      right: 5%;
-      top:50%;
-      transform: translate(-5%, -50%);
-      z-index: 2;
+    display: block;
+    color: #fff;
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top:50%;
+    font-size: 2rem;
+    transform: translate(-100%, -60%);
+    z-index: 2;
 
   }
   .nav-links{
-      position:fixed;
-      background: royalblue;
-      height: 55vh;
-      width: 100%;
-      flex-direction: column;
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(20px at 90% -10%);
-      transition: all is ease-out;
-  }
-  .nav-links.open{
-      
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(1100px at 90% -10%);
-      transition: all is ease-out;
-  }
+    position:absolute;
+    background: royalblue;
+    height: 120vh;
+    width: 100%;
+    flex-direction: column;
+    clip-path: circle(100px at 90% -10%);
+    -webkit-clip-path: circle(5px at 90% -10%);
+    transition: all is ease-out;
+}
+.nav-links.open{
+    
+    clip-path: circle(100px at 90% -10%);
+    -webkit-clip-path: circle(1100px at 90% -10%);
+    transition: all is ease-out;
+}
 
   .timeline .mainban{
       display: none;
@@ -533,41 +540,10 @@ nav{
 
   }
 
-  .navbar .bar{
-      width: 30px;
-      height: 3px;
-      background: white;
-      margin: 5px;
-  }
+ 
   nav{
       position: relative;
   }
-  .navbar{
-      position: absolute;
-      cursor: pointer;
-      right: 5%;
-      top:50%;
-      transform: translate(-5%, -50%);
-      z-index: 2;
-
-  }
-  .nav-links{
-      position:fixed;
-      background: royalblue;
-      height: 55vh;
-      width: 100%;
-      flex-direction: column;
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(5px at 90% -10%);
-      transition: all is ease-out;
-  }
-  .nav-links.open{
-      
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(1100px at 90% -10%);
-      transition: all is ease-out;
-  }
-
 
 }
 
@@ -628,40 +604,11 @@ nav{
 
   }
 
-  .navbar.bar{
-      width: 30px;
-      height: 3px;
-      background: white;
-      margin: 5px;
-  }
+ 
   nav{
       position: relative;
   }
-  .navbar{
-      position: absolute;
-      cursor: pointer;
-      right: 5%;
-      top:50%;
-      transform: translate(-5%, -50%);
-      z-index: 2;
-
-  }
-  .nav-links{
-      position:fixed;
-      background: royalblue;
-      height: 120vh;
-      width: 100%;
-      flex-direction: column;
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(5px at 90% -10%);
-      transition: all is ease-out;
-  }
-  .nav-links.open{
-      
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(1100px at 90% -10%);
-      transition: all is ease-out;
-  }
+  
   .timeline .mainban{
       display: none;
   }
@@ -727,40 +674,7 @@ nav{
 
   }
 
-  .navbar .bar{
-      width: 30px;
-      height: 3px;
-      background: white;
-      margin: 5px;
-  }
-  nav{
-      position: relative;
-  }
-  .navbar{
-      position: absolute;
-      cursor: pointer;
-      right: 5%;
-      top:50%;
-      transform: translate(-5%, -50%);
-      z-index: 2;
-
-  }
-  .nav-links{
-      position:fixed;
-      background: royalblue;
-      height: 120vh;
-      width: 100%;
-      flex-direction: column;
-      clip-path: square(100px at 90% -10%);
-      -webkit-clip-path: square (5px at 90% -10%);
-      transition: all is ease-out;
-  }
-  .nav-links.open{
-      
-      clip-path: circle(100px at 90% -10%);
-      -webkit-clip-path: circle(1100px at 90% -10%);
-      transition: all is ease-out;
-  }
+  
 }
 
 

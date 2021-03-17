@@ -1,13 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux'
-import {NavLink, Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {NavLink, Link } from 'react-router-dom';
 import '../style.scss';
 
 //Firebase Authentication
 import {auth} from './../../firebase/code';
 
+const mapState = ({user}) =>({
+    currentUser:user.currentUser
+
+});
+
 const Header = props => {
-    const { currentUser} = props;
+const [click, setClick] = useState (false);
+const handleClick = () => setClick(!click);
+    const { currentUser} = useSelector(mapState);
     return (
         <div class="navigation">
         <header className="header">
@@ -18,10 +25,8 @@ const Header = props => {
             </div>
         </header>
         <nav className="nav">
-            <div className="navbar">
-                <div className="bar"></div>
-                <div className="bar"></div>
-                <div className="bar"></div>
+            <div className="navbar" onClick={handleClick}>
+                <i className={click ? 'fa fa-times' : 'fa fa-bars'}></i>
             </div>
             <div className="logo">
              
@@ -48,13 +53,13 @@ const Header = props => {
             <ul div className="cart">
                 <li><a href="#"><i className="fa fa-shopping-basket"></i></a></li>
             </ul>
-            <div className="nav-links">
+            <div className= {click ? "nav-links active" : "nav-links"}>
                 { currentUser &&(
                      <ul className="nav-links">
                 
                      <NavLink to="/" className="main-nav" activeClassName="main-nav-active">Home</NavLink>
-                     <NavLink to="#" className="main-nav" activeClassName="main-nav-active">About</NavLink>
-                     <li><a href="#category">Category</a></li>
+                     <NavLink to="#" className="main-nav" className="main-nav" activeClassName="main-nav-active">About</NavLink>
+                     <li ><a href="#category">Category</a></li>
                      <NavLink to="/ControlPanel" className="main-nav" activeClassName="main-nav-active">Account</NavLink>
                      <NavLink to="/Register" onClick={() => auth.signOut()} className="main-nav" activeClassName="main-nav-active">Logout</NavLink>
                  </ul>
@@ -81,8 +86,5 @@ Header.defaultProps = {
     currentUser: null
 };
 
-const mapStateToProps = ({user}) =>({
-    currentUser:user.currentUser
 
-});
-export default connect(mapStateToProps, null) (Header);
+export default Header;

@@ -1,45 +1,42 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import '../style.scss';
 import { withRouter } from 'react-router-dom';
+import { resetPassword } from './../../redux/User/actions';
 
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
 import Button from './../Forms/Button';
 
-//Firebase Authentication
-import { auth } from './../../firebase/code'
 
-
+const mapState = ({ user }) => ({
+    resetPasswordSuccess: user.resetPasswordSuccess,
+    resetPasswordError: user.resetPasswordError
+})
 const Retrieve = props => {
+    const { resetPasswordSuccess,resetPasswordError } = useSelector(mapState);
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-    const [errorRecognition, setErrorRecognition] = useState([])
+    const [errorRecognition, setErrorRecognition] = useState([]);
 
-
-   const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try{
-          
-            const config = {
-                url: 'http://localhost:3000/Login'
-            };
-
-            await auth.sendPasswordResetEmail(email, config)
-             .then(() => {
-                 props.history.push('/login');
-
-             })
-             .catch(() => {
-                 
-                 const err = ['There\'s no account assosiating with this email.'];
-                 setErrorRecognition(err);
-             });
-
-         
-
-        }catch(err){
-
+    useEffect(() => {
+        if (resetPasswordSuccess){
+            props.history.push('/login');
         }
+    }, [resetPasswordSuccess]);
+
+    useEffect(() => {
+        if(Array.isArray(resetPasswordError) && resetPasswordError.length > 0){
+            setErrorRecognition(resetPasswordError);
+        }
+    }, [resetPasswordError]);
+
+
+   const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(resetPassword({ email }));
+
+        
     }
 
         const configSubsContainer = {headline:'Forget Password'};
