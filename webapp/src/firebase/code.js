@@ -12,6 +12,10 @@ const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 GoogleProvider.setCustomParameters({ prompt: 'select_account'});
 export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
 
+const FacebookProvider = new firebase.auth.FacebookAuthProvider();
+FacebookProvider.setCustomParameters({ prompt: 'select_account'});
+export const signInWithFacebook = () => auth.signInWithPopup(FacebookProvider);
+
 export const handleUserAccount = async (userAuth, additionalData) => {
     if (!userAuth) return;
 

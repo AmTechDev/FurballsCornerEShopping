@@ -7,7 +7,7 @@ import TextfieldForm from './../Forms/TextfieldForm';
 
 
 //Firebase Authentication
-import {signInWithGoogle, auth} from '../../firebase/code';
+import {signInWithGoogle, auth, signInWithFacebook} from '../../firebase/code';
 
 
 
@@ -87,7 +87,7 @@ const handleSubmit = async e =>{
                             </Buttons> 
                         </div>
                         <div className="row">
-                            <Buttons > 
+                            <Buttons onClick={signInWithFacebook}> 
                                 <i className="fa fa-facebook"></i> 
                             </Buttons> 
                         </div>

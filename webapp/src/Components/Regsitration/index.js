@@ -136,7 +136,7 @@ const Registration = props => {
                             </Button> 
                         </div>
                         <div className="row">
-                            <Button > 
+                            <Button onClick={signInWithGoogle}> 
                                 <i className="fa fa-facebook"></i> 
                             </Button> 
                         </div>
