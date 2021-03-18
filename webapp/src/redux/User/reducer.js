@@ -3,11 +3,11 @@ import typesUser from './types';
 const INITIAL_STATE = {
     currentUser: null,
     logInSuccess: false,
-    logInError: [],
     registerSuccess: false,
     registerError: [],
     resetPasswordSuccess: false,
-    resetPasswordError: []
+    resetPasswordError: [],
+    
 
 };
 
@@ -22,12 +22,7 @@ const reducerUser = (state=INITIAL_STATE, action) => {
             return{
                 ...state,
                 logInSuccess: action.payload
-            }
-        case typesUser.LOG_IN_ERROR:
-            return{
-                ...state,
-                logInError: action.payload
-            }    
+            }  
         case typesUser.REGISTER_SUCCESS:
             return{
                 ...state,
@@ -48,7 +43,15 @@ const reducerUser = (state=INITIAL_STATE, action) => {
                  ...state,
                  resetPasswordError: action.payload
             }
-
+        case typesUser.RESET_AUTH_VALUE:
+            return{
+                ...state,
+                logInSuccess: false,
+                registerSuccess: false,
+                registerError: [],
+                resetPasswordSuccess: false,
+                resetPasswordError: [],
+            }
             default:
                 return state;
     }

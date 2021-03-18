@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style.scss'
 
-const ControlPanel = props => {
+const Account = props => {
     return(
         <h1>
             Your Logged in!
@@ -9,4 +9,4 @@ const ControlPanel = props => {
     );
 };
 
-export default ControlPanel;
+export default Account;

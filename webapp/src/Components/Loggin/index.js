@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { logInUser } from './../../redux/User/actions';
+import { logInUser, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
 import '../style.scss';
 //Form
 import Buttons from './../Forms/Button';
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
-//Firebase Authentication
-import {signInWithGoogle, signInWithFacebook} from '../../firebase/code';
+
 
 
 const mapState = ({ user }) => ({
-    logInSuccess:user.logInSuccess,
-    logInError:user.logInError
+    logInSuccess:user.logInSuccess
+    
     
 });
 
 const Loggin = props =>{
-    const { logInSuccess, logInError } = useSelector(mapState);
+    const { logInSuccess } = useSelector(mapState);
     const dispatch = useDispatch();
     const[email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,19 +25,13 @@ const Loggin = props =>{
 
     useEffect(() =>{
         if(logInSuccess){
-            defaultform()
+            defaultform();
+            dispatch(resetTheAuthValues());
             props.history.push('/');
         }
 
     }, [logInSuccess]);
-    useEffect(() =>{
-        if(logInError){
-            if(Array.isArray(logInError) && logInError.length > 0){
-                setErrorRecognition(logInError);
-            }
-        }
 
-    }, [logInError]);
 
     const defaultform = () =>{
         setEmail('');
@@ -46,10 +39,19 @@ const Loggin = props =>{
     }
 
 
-const handleSubmit = async e =>{
+    const handleSubmit = e =>{
         e.preventDefault();
         dispatch(logInUser({email, password}));
         
+    }
+
+    const handleGoogleLogIn = () => {
+        dispatch(signInWithGoogle());
+
+    }
+    const handleFacebookLogIn = () => {
+        dispatch(signInWithFacebook());
+
     }
 
 
@@ -97,29 +99,35 @@ const handleSubmit = async e =>{
                     <Buttons type="submit">
                         Login
                     </Buttons>
-                    <Link to="/Register">
-                        <Buttons type="button">
-                            Register
+                    <Link to="/">
+                        <Buttons>
+                          Cancel
                         </Buttons>
+                            
                     </Link>
-                   
-                    
 
+                    
+                    
                     <div className="labelsocial">
                         <span><p>or connect with</p></span>
                     </div>
 
                     <div className="socialLogin">
                         <div className="row">
-                            <Buttons onClick={signInWithGoogle}> 
+                            <Buttons onClick={handleGoogleLogIn}> 
                                 <i className="fa fa-google"></i> 
                             </Buttons> 
                         </div>
                         <div className="row">
-                            <Buttons onClick={signInWithFacebook}> 
+                            <Buttons onClick={handleFacebookLogIn}> 
                                 <i className="fa fa-facebook"></i> 
                             </Buttons> 
                         </div>
+                    </div>
+
+                    <div className = "linkLogOrReg">
+                        <p>Don't have account? <Link to="/Register">Register here</Link></p>
+
                     </div>
 
                     

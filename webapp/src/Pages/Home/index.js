@@ -1,10 +1,10 @@
 import React from 'react';
-import Catalog from './../../Components/Catalog';
+import Category from '../../Components/Category';
 import '../style.scss';
 const Home = props => {
     return (
         <div className="home">
-            <Catalog />
+            <Category />
         </div>
     );
        

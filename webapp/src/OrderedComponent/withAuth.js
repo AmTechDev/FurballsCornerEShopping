@@ -1,4 +1,4 @@
-import { useAuth } from './../ReactHooks';
+import { useAuth } from '../redux/ReactHooks';
 import { withRouter } from 'react-router-dom';
 
 const WithAuth = props => useAuth(props) && props.children; 

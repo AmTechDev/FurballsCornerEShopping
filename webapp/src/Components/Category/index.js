@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style.scss';
 
-const Catalog = props => {
+const Category = props => {
     return (
     <div>
         <div className="categories" id="category">
@@ -62,4 +62,4 @@ const Catalog = props => {
     );
 };
 
-export default Catalog;
+export default Category;

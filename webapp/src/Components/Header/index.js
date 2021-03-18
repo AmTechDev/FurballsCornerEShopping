@@ -58,9 +58,9 @@ const handleClick = () => setClick(!click);
                      <ul className="nav-links">
                 
                      <NavLink to="/" className="main-nav" activeClassName="main-nav-active">Home</NavLink>
-                     <NavLink to="#" className="main-nav" className="main-nav" activeClassName="main-nav-active">About</NavLink>
+                     <NavLink to="/AboutUs" className="main-nav" className="main-nav" activeClassName="main-nav-active">About</NavLink>
                      <li ><a href="#category">Category</a></li>
-                     <NavLink to="/ControlPanel" className="main-nav" activeClassName="main-nav-active">Account</NavLink>
+                     <NavLink to="/Account" className="main-nav" activeClassName="main-nav-active">Account</NavLink>
                      <NavLink to="/Register" onClick={() => auth.signOut()} className="main-nav" activeClassName="main-nav-active">Logout</NavLink>
                  </ul>
                 )}
@@ -68,7 +68,7 @@ const handleClick = () => setClick(!click);
                     <ul  className="nav-links">
                 
                         <NavLink to="/" className="main-nav" activeClassName="main-nav-active">Home</NavLink>
-                        <Link to="#" className="main-nav" activeClassName="main-nav-active">About</Link>
+                        <Link to="/AboutUs" className="main-nav" activeClassName="main-nav-active">About</Link>
                         <li><a href="#category">Category</a></li>
                         <NavLink to="/Login" className="main-nav" activeClassName="main-nav-active">Login</NavLink>
                         <NavLink to="/Register" className="main-nav" activeClassName="main-nav-active">Register</NavLink>

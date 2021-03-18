@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import '../style.scss';
 import { withRouter } from 'react-router-dom';
-import { resetPassword } from './../../redux/User/actions';
+import { resetPassword, resetTheAuthValues } from '../../redux/User/action';
 
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
@@ -21,6 +21,7 @@ const Retrieve = props => {
 
     useEffect(() => {
         if (resetPasswordSuccess){
+            dispatch(resetTheAuthValues());
             props.history.push('/login');
         }
     }, [resetPasswordSuccess]);

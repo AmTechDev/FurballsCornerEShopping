@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { registerUser} from './../../redux/User/actions';
+import { registerUser, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
 import '../style.scss';
 //Forms
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
 import Button from './../Forms/Button';
-//Firebase Authentication
-import{ signInWithGoogle,auth, handleUserAccount, signInWithFacebook} from './../../firebase/code';
+
 
 const initialState = {
     displayName:'',
@@ -35,6 +34,7 @@ const Registration = props => {
     useEffect(() => {
         if (registerSuccess){
             reset();
+            dispatch(resetTheAuthValues());
             props.history.push('/');
         }
     }, [registerSuccess]);
@@ -61,7 +61,14 @@ const Registration = props => {
             password,
             confirmPassword
         }));
-       
+    }
+
+    const handleGoogleLoggingIn = () => {
+        dispatch(signInWithGoogle());
+
+    }
+    const handleFacebookLoggingIn = () => {
+        dispatch(signInWithFacebook());
 
     }
 
@@ -120,15 +127,17 @@ const Registration = props => {
                         handleChange={e => setConfirmPassword(e.target.value)}
                         
                         />
-
+                        
                         <Button type="submit">
                             Register
                         </Button>
-                        <Link to="/Login">
-                            <Button type="button">
-                                Login
+
+                         <Link to="/">
+                             <Button>
+                                Cancel
                              </Button>
-                         </Link>
+                            
+                        </Link>
 
                         <div className="labelsocial">
                         <span><p>or connect with</p></span>
@@ -136,15 +145,19 @@ const Registration = props => {
 
                     <div className="socialLogin">
                         <div className="row">
-                            <Button onClick={signInWithGoogle}> 
+                            <Button onClick={handleGoogleLoggingIn}> 
                                 <i className="fa fa-google"></i> 
                             </Button> 
                         </div>
                         <div className="row">
-                            <Button onClick={signInWithFacebook}> 
+                            <Button onClick={handleFacebookLoggingIn}> 
                                 <i className="fa fa-facebook"></i> 
                             </Button> 
                         </div>
+                    </div>
+                    <div className = "linkLogOrReg">
+                        <p>Already have an account? <Link to="/Login">Login here</Link></p>
+
                     </div>
 
                     </form>

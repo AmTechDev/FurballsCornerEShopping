@@ -1,5 +1,34 @@
 import typesUser from './types';
-import { auth } from './../../firebase/code';
+import { auth, handleUserAccount, GoogleProvider, FacebookProvider } from '../../firebase/code';
+
+export const resetTheAuthValues = () => ({
+    type: typesUser.RESET_AUTH_VALUE
+});
+
+export const signInWithGoogle = () => async dispatch => {
+    try{
+        await auth.signInWithPopup(GoogleProvider)
+        .then(() => {
+            dispatch({
+                type: typesUser.LOG_IN_SUCCESS,
+                payload: true
+            });
+        })
+    } catch(err) {
+
+    }
+   
+
+};
+export const signInWithFacebook = () => async dispatch => {
+    try{
+        auth.signInWithPopup(FacebookProvider);
+    } catch(err) {
+
+    }
+    
+};
+
 export const setCurrentUser = user => ({
     type: typesUser.SET_CURRENT_USER,
     payload: user
@@ -14,7 +43,7 @@ export const registerUser = ({displayName, email, password, confirmPassword }) =
             payload: err
         });
         return;
-         //setErrorRecognition(err);
+        
     }
     try{
         const { user } = await auth.createUserWithEmailAndPassword(email, password);
@@ -25,30 +54,23 @@ export const registerUser = ({displayName, email, password, confirmPassword }) =
             payload: true
         })
         
+        
 
 
 
     } catch(err){
         //console.log(err);
     }
-}
+};
 
-export const logInUser = ({ email, password }) => async dispatch =>{
-    if (password !== email){
-        const err = ['Email and Password Doesn\'t Match'];
-        dispatch({
-            type: typesUser.LOG_IN_ERROR,
-            payload: err
-        });
-        return;
-         //setErrorRecognition(err);
-    }
+export const logInUser = ({ email, password }) => async dispatch => {
     try{
         await auth.signInWithEmailAndPassword(email, password);
         dispatch({
             type: typesUser.LOG_IN_SUCCESS,
             payload: true
         });
+        
        
 
     } catch(err){
@@ -56,7 +78,9 @@ export const logInUser = ({ email, password }) => async dispatch =>{
 
     }
 
-}
+};
+
+
 
 export const resetPassword = ({ email }) => async dispatch => {
      const config = {
@@ -70,7 +94,6 @@ export const resetPassword = ({ email }) => async dispatch => {
                  type: typesUser.RESET_PASSWORD_SUCCESS,
                  payload: true
              })
-             //props.history.push('/login');
 
          })
          .catch(() => {
@@ -80,10 +103,14 @@ export const resetPassword = ({ email }) => async dispatch => {
                  type: typesUser.RESET_PASSWORD_ERROR,
                  payload: err
              })
-             //setErrorRecognition(err);
+             
+            
          });
     }catch(err){
         //console.log(err);
     }
 
-}
+};
+
+
+

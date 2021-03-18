@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import WithAuth from './OrderedComponent/withAuth';
@@ -10,14 +10,16 @@ import Home from './Pages/Home';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import RecoverPass from './Pages/RecoverPass';
-import ControlPanel from './Pages/ControlPanel';
+import Account from './Pages/Account';
 import './main.scss';
 
 //redux
-import { setCurrentUser} from './redux/User/actions';
+import { setCurrentUser, currentUser} from './redux/User/action';
 
 //Firebase Authentication
 import { auth, handleUserAccount } from './firebase/code';
+import Aboutus from './Pages/AboutUs';
+
 
 
 const App = props => {
@@ -39,8 +41,8 @@ const App = props => {
    //  this.props.setCurrentUser(userAuth);
   //  });
  // }; 
-
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     //return ( ) => {
@@ -49,17 +51,17 @@ const App = props => {
       if (userAuth){
         const userRef = await handleUserAccount(userAuth);
         userRef.onSnapshot(snapshot => {
-          dispatch(setCurrentUser({
+         dispatch(setCurrentUser({
             id: snapshot.id,
               ...snapshot.data()
           }));
            
         })
       }
-      setCurrentUser(userAuth);
+      dispatch(setCurrentUser(userAuth));
      });
       return () => {
-       authPerciever();
+        authPerciever();
       };
     //};
 
@@ -72,14 +74,21 @@ const App = props => {
             <HomeDesign > 
               <Route path="/" exact={true} component={Timeline} />
               <Home />
-             
             </HomeDesign>
           )
           } />
+
           <Route path="/Login" 
             render={() =>   (
                 <Login />
             )} />
+            <Route path="/Account" render={() => (
+            <WithAuth>
+              <MainDesign >
+               <Account />
+              </MainDesign>
+            </WithAuth>
+          )} />
           <Route path="/Register" render={() => (
               <Register />
           )} />
@@ -88,12 +97,12 @@ const App = props => {
               <RecoverPass />
           )} />
 
-          <Route path="/ControlPanel" render={() => (
-            <WithAuth>
-              <MainDesign >
-               <ControlPanel />
-              </MainDesign>
-            </WithAuth>
+          
+          <Route path="/Aboutus" render={() => (
+            <HomeDesign>
+              <Aboutus />  
+            </HomeDesign>
+                     
           )} />
       
        </Switch>
@@ -105,5 +114,7 @@ const App = props => {
     </div>
   );
  };
+
+ 
 
 export default App;
