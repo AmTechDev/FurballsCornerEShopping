@@ -16,7 +16,7 @@ export const FacebookProvider = new firebase.auth.FacebookAuthProvider();
 FacebookProvider.setCustomParameters({ prompt: 'select_account'});
 
 
-export const handleUserAccount = async (userAuth, additionalData) => {
+export const handleUserAccount = async ({userAuth, additionalData}) => {
     if (!userAuth) return;
 
     const { uid } = userAuth;

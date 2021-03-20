@@ -44,28 +44,14 @@ const App = props => {
   const dispatch = useDispatch();
   
 
-  useEffect(() => {
+ // useEffect(() => {
     //return ( ) => {
-      
-    const authPerciever = auth.onAuthStateChanged( async userAuth =>{
-      if (userAuth){
-        const userRef = await handleUserAccount(userAuth);
-        userRef.onSnapshot(snapshot => {
-         dispatch(setCurrentUser({
-            id: snapshot.id,
-              ...snapshot.data()
-          }));
-           
-        })
-      }
-      dispatch(setCurrentUser(userAuth));
-     });
-      return () => {
-        authPerciever();
-      };
+     // return () => {
+     //   authPerciever();
+     // };
     //};
 
-  }, [])
+ // }, [])
  
   return (
     <div className="App">

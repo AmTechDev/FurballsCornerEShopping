@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { logInUser, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
+import { logInStart, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
 import '../style.scss';
 //Form
 import Buttons from './../Forms/Button';
@@ -11,26 +11,25 @@ import TextfieldForm from './../Forms/TextfieldForm';
 
 
 const mapState = ({ user }) => ({
-    logInSuccess:user.logInSuccess
+    currentUser:user.currentUser
     
     
 });
 
 const Loggin = props =>{
-    const { logInSuccess } = useSelector(mapState);
+    const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const[email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorRecognition, setErrorRecognition] = useState('');
 
     useEffect(() =>{
-        if(logInSuccess){
+        if(currentUser){
             defaultform();
-            dispatch(resetTheAuthValues());
             props.history.push('/');
         }
 
-    }, [logInSuccess]);
+    }, [currentUser]);
 
 
     const defaultform = () =>{
@@ -41,7 +40,7 @@ const Loggin = props =>{
 
     const handleSubmit = e =>{
         e.preventDefault();
-        dispatch(logInUser({email, password}));
+        dispatch(logInStart({email, password}));
         
     }
 

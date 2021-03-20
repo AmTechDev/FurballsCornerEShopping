@@ -17,9 +17,18 @@ export const signInWithGoogle = () => async dispatch => {
     } catch(err) {
 
     }
-   
 
 };
+
+export const logInSuccess = user  => ({
+    type: typesUser.LOG_IN_SUCCESS,
+    payload: user
+});
+
+export const logInStart = userCredentials => ({
+    type: typesUser.LOG_IN_START,
+    payload: userCredentials
+});
 export const signInWithFacebook = () => async dispatch => {
     try{
         auth.signInWithPopup(FacebookProvider);
@@ -63,22 +72,10 @@ export const registerUser = ({displayName, email, password, confirmPassword }) =
     }
 };
 
-export const logInUser = ({ email, password }) => async dispatch => {
-    try{
-        await auth.signInWithEmailAndPassword(email, password);
-        dispatch({
-            type: typesUser.LOG_IN_SUCCESS,
-            payload: true
-        });
-        
-       
+//export const logInUser = ({ email, password }) => async dispatch => {
+  
 
-    } catch(err){
-        //console.log(err);
-
-    }
-
-};
+//};
 
 
 
