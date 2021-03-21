@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { logInStart, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
+import { logInStart, googleLogInStart, facebookLogInStart, resetTheAuthValues } from '../../redux/User/action';
 import '../style.css';
 //Form
 import Buttons from './../Forms/Button';
@@ -45,11 +45,11 @@ const Loggin = props =>{
     }
 
     const handleGoogleLogIn = () => {
-        dispatch(signInWithGoogle());
+        dispatch(googleLogInStart());
 
     }
     const handleFacebookLogIn = () => {
-        dispatch(signInWithFacebook());
+        dispatch(facebookLogInStart());
 
     }
 

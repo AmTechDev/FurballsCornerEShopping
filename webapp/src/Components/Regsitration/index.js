@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { registerStart, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
+import { registerStart, googleLogInStart, facebookLogInStart, resetTheAuthValues } from '../../redux/User/action';
 import '../style.css';
 //Forms
 import SubsContainer from './../SubsContainer';
@@ -19,11 +19,11 @@ const initialState = {
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
-    errorUser: user.errorUser
+    errUser: user.errUser
 });
 const Registration = props => {
 
-    const { currentUser, errorUser} = useSelector(mapState);
+    const { currentUser, errUser} = useSelector(mapState);
     const dispatch = useDispatch();
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
@@ -38,10 +38,10 @@ const Registration = props => {
         }
     }, [currentUser]);
     useEffect(() => {
-        if(Array.isArray(errorUser) && errorUser.length > 0){
-            setErrorRecognition(errorUser);
+        if(Array.isArray(errUser) && errUser.length > 0){
+            setErrorRecognition(errUser);
         }
-    }, [errorUser]);
+    }, [errUser]);
 
     const reset = () => {
         setDisplayName('');
@@ -63,11 +63,11 @@ const Registration = props => {
     }
 
     const handleGoogleLoggingIn = () => {
-        dispatch(signInWithGoogle());
+        dispatch(googleLogInStart());
 
     }
     const handleFacebookLoggingIn = () => {
-        dispatch(signInWithFacebook());
+        dispatch(facebookLogInStart());
 
     }
 

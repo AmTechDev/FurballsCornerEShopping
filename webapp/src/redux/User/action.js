@@ -1,5 +1,5 @@
 import typesUser from './types';
-import { auth, handleUserAccount, GoogleProvider, FacebookProvider } from '../../firebase/code';
+
 
 
 export const resetTheAuthValues = () => ({
@@ -31,35 +31,45 @@ export const registerStart = userCredentials => ({
     payload: userCredentials
 });
 
+export const resetPasswordStart = userCredentials => ({
+    type: typesUser.RESET_PASSWORD_START,
+    payload: userCredentials
+});
+
+export const resetPasswordSuccess = () => ({
+    type: typesUser.RESET_PASSWORD_SUCCESS,
+    payload: true
+});
+
 export const errorUser = err =>({
     type: typesUser.ERROR_USER,
     payload: err
 });
 
+export const resettingUser = () => ({
+    type:typesUser.RESETTING_USER
+});
+
+export const googleLogInStart = () => ({
+    type: typesUser.GOOGLE_LOG_IN_START
+});
+export const facebookLogInStart = () => ({
+    type: typesUser.facebook_LOG_IN_START
+})
+
+
+
+
+
 
 export const signInWithGoogle = () => async dispatch => {
-    try{
-        await auth.signInWithPopup(GoogleProvider)
-        .then(() => {
-            dispatch({
-                type: typesUser.LOG_IN_SUCCESS,
-                payload: true
-            });
-        })
-    } catch(err) {
-
-    }
-
 };
 
 export const signInWithFacebook = () => async dispatch => {
-    try{
-        auth.signInWithPopup(FacebookProvider);
-    } catch(err) {
-
-    }
-    
+     
 };
+
+
 
 
 
@@ -68,47 +78,7 @@ export const setCurrentUser = user => ({
     payload: user
 });
 
-export const registerUser = ({displayName, email, password, confirmPassword }) => async dispatch => {
-    
-    
-};
 
-//export const logInUser = ({ email, password }) => async dispatch => {
-  
-
-//};
-
-
-
-export const resetPassword = ({ email }) => async dispatch => {
-     const config = {
-            url: 'http://localhost:3000/Login'
-        };
-
-        try{
-        await auth.sendPasswordResetEmail(email, config)
-         .then(() => {
-             dispatch({
-                 type: typesUser.RESET_PASSWORD_SUCCESS,
-                 payload: true
-             })
-
-         })
-         .catch(() => {
-             
-             const err = ['the email does not exist in any account.'];
-             dispatch({
-                 type: typesUser.RESET_PASSWORD_ERROR,
-                 payload: err
-             })
-             
-            
-         });
-    }catch(err){
-        //console.log(err);
-    }
-
-};
 
 
 
