@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import '../style.scss';
+import '../style.css';
 import { withRouter } from 'react-router-dom';
 import { resetPassword, resetTheAuthValues } from '../../redux/User/action';
 

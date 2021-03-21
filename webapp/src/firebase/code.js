@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { firebaseConfig } from './config';
+import { resetTheAuthValues } from '../redux/User/action';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -44,3 +45,12 @@ export const handleUserAccount = async ({userAuth, additionalData}) => {
     }
     return userRef;
 };
+
+export const fetchCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const deregister = auth.onAuthStateChanged(userAuth =>{
+            deregister();
+            resolve(userAuth);
+        }, reject);
+    })
+}

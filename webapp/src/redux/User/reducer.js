@@ -1,7 +1,8 @@
 import typesUser from './types';
 
 const INITIAL_STATE = {
-    currentUser: null
+    currentUser: null,
+    ErrorUser: []
     //logInSuccess: false,
    //registerSuccess: false,
    // registerError: [],
@@ -16,8 +17,19 @@ const reducerUser = (state=INITIAL_STATE, action) => {
         case typesUser.LOG_IN_SUCCESS:
             return{
                 ...state,
-                currentUser: action.payload
+                currentUser: action.payload,
+                ErrorUser: []
             }
+            case typesUser.LOG_OUT_SUCCESS:
+                return{
+                    ...state,
+                    ...INITIAL_STATE
+                }
+            case typesUser.ERROR_USER:
+                return{
+                    ...state,
+                    ErrorUser: action.payload
+                }
         //case typesUser.SET_CURRENT_USER:
         //    return{
         //        ...state,

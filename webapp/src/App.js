@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
 import WithAuth from './OrderedComponent/withAuth';
 import MainDesign from './Designs/MainDesigns';
 import HomeDesign from './Designs/HomeDesign';
@@ -11,10 +10,10 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import RecoverPass from './Pages/RecoverPass';
 import Account from './Pages/Account';
-import './main.scss';
+import './main.css';
 
 //redux
-import { setCurrentUser, currentUser} from './redux/User/action';
+import { setCurrentUser, currentUser, userCheckSession} from './redux/User/action';
 
 //Firebase Authentication
 import { auth, handleUserAccount } from './firebase/code';
@@ -44,14 +43,15 @@ const App = props => {
   const dispatch = useDispatch();
   
 
- // useEffect(() => {
-    //return ( ) => {
+  useEffect(() => {
+    dispatch(userCheckSession());
+
      // return () => {
      //   authPerciever();
      // };
     //};
 
- // }, [])
+  }, []);
  
   return (
     <div className="App">
@@ -67,6 +67,7 @@ const App = props => {
           <Route path="/Login" 
             render={() =>   (
                 <Login />
+                 
             )} />
             <Route path="/Account" render={() => (
             <WithAuth>

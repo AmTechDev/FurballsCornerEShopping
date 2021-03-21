@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { registerUser, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
-import '../style.scss';
+import { registerStart, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
+import '../style.css';
 //Forms
 import SubsContainer from './../SubsContainer';
 import TextfieldForm from './../Forms/TextfieldForm';
@@ -18,12 +18,12 @@ const initialState = {
 };
 
 const mapState = ({ user }) => ({
-    registerSuccess: user.registerSuccess,
-    registerError: user.registerError
+    currentUser: user.currentUser,
+    errorUser: user.errorUser
 });
 const Registration = props => {
 
-    const { registerSuccess,registerError} = useSelector(mapState);
+    const { currentUser, errorUser} = useSelector(mapState);
     const dispatch = useDispatch();
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
@@ -32,17 +32,16 @@ const Registration = props => {
     const [errorRecognition, setErrorRecognition] = useState('');
 
     useEffect(() => {
-        if (registerSuccess){
+        if (currentUser){
             reset();
-            dispatch(resetTheAuthValues());
             props.history.push('/');
         }
-    }, [registerSuccess]);
+    }, [currentUser]);
     useEffect(() => {
-        if(Array.isArray(registerError) && registerError.length > 0){
-            setErrorRecognition(registerError);
+        if(Array.isArray(errorUser) && errorUser.length > 0){
+            setErrorRecognition(errorUser);
         }
-    }, [registerError]);
+    }, [errorUser]);
 
     const reset = () => {
         setDisplayName('');
@@ -55,7 +54,7 @@ const Registration = props => {
 
     const handleSubmitForm =  event => {
         event.preventDefault();
-        dispatch(registerUser({
+        dispatch(registerStart({
             displayName,
             email,
             password,

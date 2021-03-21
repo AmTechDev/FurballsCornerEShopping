@@ -1,9 +1,41 @@
 import typesUser from './types';
 import { auth, handleUserAccount, GoogleProvider, FacebookProvider } from '../../firebase/code';
 
+
 export const resetTheAuthValues = () => ({
     type: typesUser.RESET_AUTH_VALUE
 });
+export const logInStart = userCredentials => ({
+    type: typesUser.LOG_IN_START,
+    payload: userCredentials
+});
+
+export const logInSuccess = user  => ({
+    type: typesUser.LOG_IN_SUCCESS,
+    payload: user
+});
+
+export const userCheckSession =  () => ({
+    type: typesUser.USER_CHECK_SESSION
+});
+
+export const logOutStart = () => ({
+    type: typesUser.LOG_OUT_START
+});
+export const logOutSuccess = () => ({
+    type: typesUser.LOG_OUT_SUCCESS
+});
+
+export const registerStart = userCredentials => ({
+    type: typesUser.REGISTER_START,
+    payload: userCredentials
+});
+
+export const errorUser = err =>({
+    type: typesUser.ERROR_USER,
+    payload: err
+});
+
 
 export const signInWithGoogle = () => async dispatch => {
     try{
@@ -20,15 +52,6 @@ export const signInWithGoogle = () => async dispatch => {
 
 };
 
-export const logInSuccess = user  => ({
-    type: typesUser.LOG_IN_SUCCESS,
-    payload: user
-});
-
-export const logInStart = userCredentials => ({
-    type: typesUser.LOG_IN_START,
-    payload: userCredentials
-});
 export const signInWithFacebook = () => async dispatch => {
     try{
         auth.signInWithPopup(FacebookProvider);
@@ -38,6 +61,8 @@ export const signInWithFacebook = () => async dispatch => {
     
 };
 
+
+
 export const setCurrentUser = user => ({
     type: typesUser.SET_CURRENT_USER,
     payload: user
@@ -45,31 +70,7 @@ export const setCurrentUser = user => ({
 
 export const registerUser = ({displayName, email, password, confirmPassword }) => async dispatch => {
     
-    if (password !== confirmPassword){
-        const err = ['Password Doesn\'t Match'];
-        dispatch({
-            type: typesUser.REGISTER_ERROR,
-            payload: err
-        });
-        return;
-        
-    }
-    try{
-        const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-        await handleUserAccount(user, { displayName});
-        dispatch({
-            type: typesUser.REGISTER_SUCCESS,
-            payload: true
-        })
-        
-        
-
-
-
-    } catch(err){
-        //console.log(err);
-    }
+    
 };
 
 //export const logInUser = ({ email, password }) => async dispatch => {

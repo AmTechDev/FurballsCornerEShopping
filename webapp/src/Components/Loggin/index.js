@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { logInStart, signInWithGoogle, signInWithFacebook, resetTheAuthValues } from '../../redux/User/action';
-import '../style.scss';
+import '../style.css';
 //Form
 import Buttons from './../Forms/Button';
 import SubsContainer from './../SubsContainer';

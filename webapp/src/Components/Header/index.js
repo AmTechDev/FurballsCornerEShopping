@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import {NavLink, Link } from 'react-router-dom';
-import '../style.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import  {NavLink, Link } from 'react-router-dom';
+import { logOutStart } from './../../redux/User/action';
+import '../style.css';
 
-//Firebase Authentication
-import {auth} from './../../firebase/code';
+
 
 const mapState = ({user}) =>({
     currentUser:user.currentUser
@@ -12,9 +12,13 @@ const mapState = ({user}) =>({
 });
 
 const Header = props => {
+const dispatch = useDispatch();
 const [click, setClick] = useState (false);
 const handleClick = () => setClick(!click);
-    const { currentUser} = useSelector(mapState);
+const { currentUser} = useSelector(mapState);
+const signOut = () => {
+    dispatch(logOutStart());
+};
     return (
         <div class="navigation">
         <header className="header">
@@ -61,7 +65,7 @@ const handleClick = () => setClick(!click);
                      <NavLink to="/AboutUs" className="main-nav" className="main-nav" activeClassName="main-nav-active">About</NavLink>
                      <li ><a href="#category">Category</a></li>
                      <NavLink to="/Account" className="main-nav" activeClassName="main-nav-active">Account</NavLink>
-                     <NavLink to="/Register" onClick={() => auth.signOut()} className="main-nav" activeClassName="main-nav-active">Logout</NavLink>
+                     <NavLink to="/" onClick={() => signOut()} className="main-nav" activeClassName="main-nav-active">Logout</NavLink>
                  </ul>
                 )}
                 { !currentUser &&(
