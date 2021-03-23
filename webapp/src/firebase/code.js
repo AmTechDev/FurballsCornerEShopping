@@ -29,12 +29,14 @@ export const handleUserAccount = async ({userAuth, additionalData}) => {
 
         const { displayName, email} = userAuth;
         const timestamp = new Date();
+        const uiRoles = ['user'];
 
         try{
             await userRef.set({
                 displayName,
                 email,
                 joined: timestamp,
+                uiRoles,
                 ...additionalData
 
             });

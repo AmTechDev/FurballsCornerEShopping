@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+
+//Components and Pages
+import AdminAuth from './OrderedComponent/AdminAuth';
 import WithAuth from './OrderedComponent/withAuth';
 import MainDesign from './Designs/MainDesigns';
 import HomeDesign from './Designs/HomeDesign';
@@ -10,19 +13,23 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import RecoverPass from './Pages/RecoverPass';
 import Account from './Pages/Account';
+import Aboutus from './Pages/AboutUs';
 import './main.css';
+
+//Admin
+import RedirectAdminPage from './Components/RedirectAdminPage';
+import Admin from './Pages/Admin';
 
 //redux
 import { setCurrentUser, currentUser, userCheckSession} from './redux/User/action';
 
 //Firebase Authentication
 import { auth, handleUserAccount } from './firebase/code';
-import Aboutus from './Pages/AboutUs';
+
 
 
 
 const App = props => {
-  
   
   //componentDidMount(){
    // const { setCurrentUser } = this.props;
@@ -55,6 +62,7 @@ const App = props => {
  
   return (
     <div className="App">
+    <RedirectAdminPage />
        <Switch>
           <Route path="/" exact={true} render={() => (
             <HomeDesign > 
@@ -82,14 +90,20 @@ const App = props => {
 
           <Route path="/RecoverPass" render={() => (
               <RecoverPass />
-          )} />
-
-          
+          )} />   
           <Route path="/Aboutus" render={() => (
             <HomeDesign>
               <Aboutus />  
             </HomeDesign>
                      
+          )} />
+
+          <Route path="/Admin" render={() => (
+            <AdminAuth>
+              <MainDesign>
+                <Admin />
+              </MainDesign>
+              </AdminAuth>    
           )} />
       
        </Switch>

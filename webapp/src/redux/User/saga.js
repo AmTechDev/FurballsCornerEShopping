@@ -1,12 +1,13 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import typesUser from  './types';
 import { manageResetPasswordAPI } from './support';
+import './errStyle.css';
 import { logInSuccess, logOutSuccess, resetPasswordSuccess, errorUser} from './action';
 
 //Firebase 
 import { auth, handleUserAccount, fetchCurrentUser, GoogleProvider, FacebookProvider } from '../../firebase/code';
 
-export function* getSnapshotFromUserAuth(user, additionalData={}) {
+export function* getCaptureFromUserAuth(user, additionalData={}) {
     try{
               const userRef = yield call (handleUserAccount, {userAuth: user, additionalData});
               const snapshot = yield userRef.get();
@@ -21,17 +22,21 @@ export function* getSnapshotFromUserAuth(user, additionalData={}) {
     }
 }
 export function* elogIn({ payload: {email, password}}){
+   //if (email!== password){
+       //const err = [<div className="err">Email and Password Doesn't Match</div>];
+      // yield put(
+      //    errorUser(err)
+      //  );
+      // return;
+     //Can't put error recognition it will always read the false value after re entering the correct password  
+    //}
     try{
         const { user } = yield auth.signInWithEmailAndPassword(email, password);
-        yield getSnapshotFromUserAuth(user);
-       
+        yield getCaptureFromUserAuth(user);
         //dispatch({
         //    type: typesUser.LOG_IN_SUCCESS,
         //    payload: true
         //});
-        
-       
-
     } catch(err){
         //console.log(err);
 
@@ -44,7 +49,7 @@ export function* isAuthenticated(){
     try{
         const userAuth = yield fetchCurrentUser();
         if(!userAuth) return;
-        yield getSnapshotFromUserAuth(userAuth);
+        yield getCaptureFromUserAuth(userAuth);
     } catch(err){
         //console.log(err);
     }
@@ -74,7 +79,7 @@ export function* registerUser( {payload: {
 
 }}){
     if (password !== confirmPassword){
-        const err = ['Password Doesn\'t Match'];
+        const err = [<div className="err">Password Doesn't Match</div>];
         yield put(
             errorUser(err)
         );
@@ -84,7 +89,7 @@ export function* registerUser( {payload: {
     try{
         const { user } = yield auth.createUserWithEmailAndPassword(email, password);
         const additionalData = { displayName };
-        yield getSnapshotFromUserAuth(user, additionalData );
+        yield getCaptureFromUserAuth(user, additionalData );
         //yield call (handleUserAccount, { userAuth: user, additionalData: { displayName } });
        
     } catch(err){
@@ -99,7 +104,7 @@ export function* onRegisterStart(){
 export function* googleLogIn(){
     try{
         const { user } = yield auth.signInWithPopup(GoogleProvider);
-        yield getSnapshotFromUserAuth(user);
+        yield getCaptureFromUserAuth(user);
     } catch(err) {
 
     }
@@ -111,7 +116,7 @@ export function* onGoogleLogInStart(){
 export function* facebookLogIn(){
     try{
        const { user } = yield auth.signInWithPopup(FacebookProvider);
-       yield getSnapshotFromUserAuth(user);
+       yield getCaptureFromUserAuth(user);
     } catch(err) {
 
     }

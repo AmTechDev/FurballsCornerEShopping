@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { logInStart, googleLogInStart, facebookLogInStart, resetTheAuthValues } from '../../redux/User/action';
 import '../style.css';
 //Form
@@ -12,13 +12,14 @@ import TextfieldForm from './../Forms/TextfieldForm';
 
 const mapState = ({ user }) => ({
     currentUser:user.currentUser
-    
+   
     
 });
 
 const Loggin = props =>{
-    const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { currentUser } = useSelector(mapState);  
     const[email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorRecognition, setErrorRecognition] = useState('');
@@ -26,11 +27,11 @@ const Loggin = props =>{
     useEffect(() =>{
         if(currentUser){
             defaultform();
-            props.history.push('/');
+            history.push('/');
         }
 
     }, [currentUser]);
-
+   
 
     const defaultform = () =>{
         setEmail('');
@@ -140,4 +141,4 @@ const Loggin = props =>{
 }
 
 
-export default withRouter(Loggin);
+export default Loggin;

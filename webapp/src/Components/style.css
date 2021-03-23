@@ -148,6 +148,35 @@ nav{
   
   
   /*------END OF NAVIGATION-------------------------------*/
+/*------------------------ADMIN STYLE--------------------------------*/
+.adminBTN{
+  display: inline-block;
+  width: 100%;
+  background-color: royalblue;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.adminBTN ul{
+  float: right;
+}
+.adminBTN li{
+  display: inline-block;
+}
+.adminBTN a{
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  color: #fff;
+  padding: 10px;
+  transition: all .4s ease-in-out;
+}
+.adminBTN a:hover{
+  background-color: #fff;
+  color: royalblue;
+  transition: all .4s ease-in-out;
+}
+
 /*------------LOGGIN AND LOGOUT--------------------------------------*/
 .subscontainer{
   display: block;
@@ -196,9 +225,6 @@ nav{
   height: 60px;
   width: 60px;
   border-radius: 50%;
- .row button{
-    display: flex;
-}
 }
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { registerStart, googleLogInStart, facebookLogInStart, resetTheAuthValues } from '../../redux/User/action';
 import '../style.css';
 //Forms
@@ -22,9 +22,9 @@ const mapState = ({ user }) => ({
     errUser: user.errUser
 });
 const Registration = props => {
-
-    const { currentUser, errUser} = useSelector(mapState);
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { currentUser, errUser} = useSelector(mapState);
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -34,7 +34,7 @@ const Registration = props => {
     useEffect(() => {
         if (currentUser){
             reset();
-            props.history.push('/');
+            history.push('/');
         }
     }, [currentUser]);
     useEffect(() => {
@@ -167,4 +167,4 @@ const Registration = props => {
     }
 
 
-export default withRouter(Registration);
+export default Registration;

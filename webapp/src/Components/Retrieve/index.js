@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import '../style.css';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { resetPasswordStart, resetTheAuthValues, resettingUser } from '../../redux/User/action';
 
 import SubsContainer from './../SubsContainer';
@@ -16,15 +16,16 @@ const mapState = ({ user }) => ({
 
 });
 const Retrieve = props => {
-    const { resetPasswordSuccess,errUser } = useSelector(mapState);
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { resetPasswordSuccess,errUser } = useSelector(mapState);
     const [email, setEmail] = useState('');
     const [errorRecognition, setErrorRecognition] = useState([]);
 
     useEffect(() => {
         if (resetPasswordSuccess){
             dispatch(resettingUser());
-            props.history.push('/login');
+            history.push('/login');
         }
     }, [resetPasswordSuccess]);
 
@@ -80,4 +81,4 @@ const Retrieve = props => {
     }
 
 
-export default withRouter(Retrieve);
+export default Retrieve;
