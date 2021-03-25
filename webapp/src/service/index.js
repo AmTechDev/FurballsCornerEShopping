@@ -1,7 +1,7 @@
 export const adminverification = currentUser => {
-    if (!currentUser || !Array.isArray(currentUser.uiRoles)) return false;
-    const { uiRoles } = currentUser;
-    if(uiRoles.includes("admin")) return true;
+    if (!currentUser || !Array.isArray(currentUser.rolesUI)) return false;
+    const { rolesUI } = currentUser;
+    if(rolesUI.includes('admin')) return true;
 
     return false;
 }

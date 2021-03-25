@@ -1,7 +1,10 @@
 import typesUser from './types';
 
 
-
+//export const setCurrentUser = user => ({
+//    type: typesUser.SET_CURRENT_USER,
+//    payload: user
+//});
 export const resetTheAuthValues = () => ({
     type: typesUser.RESET_AUTH_VALUE
 });
@@ -55,28 +58,8 @@ export const googleLogInStart = () => ({
 });
 export const facebookLogInStart = () => ({
     type: typesUser.facebook_LOG_IN_START
-})
-
-
-
-
-
-
-export const signInWithGoogle = () => async dispatch => {
-};
-
-export const signInWithFacebook = () => async dispatch => {
-     
-};
-
-
-
-
-
-export const setCurrentUser = user => ({
-    type: typesUser.SET_CURRENT_USER,
-    payload: user
 });
+
 
 
 

@@ -215,6 +215,16 @@ nav{
 .links a{
   color:black;
 }
+
+.cancelbtn .btn:hover{
+  background-color: #444444;
+}
+.resetpass{
+  color: royalblue;
+}
+.resetpass:hover{
+  color: lightseagreen;
+}
 /*----------SOCIAL ACCOUNT BTN----------------------------------*/
 .labelsocial{
   text-align: center;
@@ -227,9 +237,14 @@ nav{
   border-radius: 50%;
 }
 
-
 .linkLogOrReg{
   text-align: right;
+}
+.here{
+  color: royalblue;
+}
+.here:hover{
+  color:lightseagreen;
 }
 
 /*-------------------TIMELINE----------------------------------------*/
@@ -294,8 +309,7 @@ nav{
   }
   /*-----------END OF TIMELINE-------------------*/
   /*----------CATALOG----------------------------*/
-  .catalog{
-  }
+
   /*-----------------CATEGORIES----------------------------------*/
 .categories{
   display: flex;

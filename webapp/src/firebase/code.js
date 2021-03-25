@@ -25,18 +25,18 @@ export const handleUserAccount = async ({userAuth, additionalData}) => {
     const userRef = firestore.doc(`users/${uid}`);
     const capture = await userRef.get();
 
-    if (!capture.exitst){
+    if (!capture.exists){
 
         const { displayName, email} = userAuth;
         const timestamp = new Date();
-        const uiRoles = ['user'];
+        const rolesUI = ['user'];
 
         try{
             await userRef.set({
                 displayName,
                 email,
                 joined: timestamp,
-                uiRoles,
+                rolesUI,
                 ...additionalData
 
             });

@@ -131,12 +131,13 @@ const Registration = props => {
                             Register
                         </Button>
 
-                         <Link to="/">
-                             <Button>
-                                Cancel
-                             </Button>
-                            
-                        </Link>
+                        <div className="cancelbtn">
+                            <Link to="/">
+                                <Button>
+                                     Cancel
+                                </Button>  
+                             </Link> 
+                         </div>
 
                         <div className="labelsocial">
                         <span><p>or connect with</p></span>
@@ -155,7 +156,7 @@ const Registration = props => {
                         </div>
                     </div>
                     <div className = "linkLogOrReg">
-                        <p>Already have an account? <Link to="/Login">Login here</Link></p>
+                        <p>Already have an account? <Link to="/Login" className="here">Login here</Link></p>
 
                     </div>
 

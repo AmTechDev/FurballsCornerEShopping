@@ -10,11 +10,11 @@ import { auth, handleUserAccount, fetchCurrentUser, GoogleProvider, FacebookProv
 export function* getCaptureFromUserAuth(user, additionalData={}) {
     try{
               const userRef = yield call (handleUserAccount, {userAuth: user, additionalData});
-              const snapshot = yield userRef.get();
+              const capture = yield userRef.get();
               yield put(
                 logInSuccess({
-                    id: snapshot.id,
-                    ...snapshot.data()
+                    id: capture.id,
+                    ...capture.data()
                 })
              );
     } catch(err){

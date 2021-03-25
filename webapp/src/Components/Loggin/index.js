@@ -91,7 +91,7 @@ const Loggin = props =>{
                     />
 
                     <div className="link">
-                        <Link to="/RecoverPass">
+                        <Link to="/RecoverPass" className="resetpass" >
                             Forgot Password
                         </Link>
                     </div>
@@ -99,12 +99,14 @@ const Loggin = props =>{
                     <Buttons type="submit">
                         Login
                     </Buttons>
-                    <Link to="/">
+                    <div className="cancelbtn">
+                       <Link to="/">
                         <Buttons>
                           Cancel
-                        </Buttons>
-                            
-                    </Link>
+                        </Buttons>  
+                        </Link> 
+                    </div>
+                    
 
                     
                     
@@ -126,7 +128,7 @@ const Loggin = props =>{
                     </div>
 
                     <div className = "linkLogOrReg">
-                        <p>Don't have account? <Link to="/Register">Register here</Link></p>
+                        <p>Don't have account? <Link to="/Register" className="here">Register here</Link></p>
 
                     </div>
 

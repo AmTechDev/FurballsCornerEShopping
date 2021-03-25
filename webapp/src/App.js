@@ -3,7 +3,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 //Components and Pages
-import AdminAuth from './OrderedComponent/AdminAuth';
+import withAdminAuth from './OrderedComponent/withAdminAuth';
 import WithAuth from './OrderedComponent/withAuth';
 import MainDesign from './Designs/MainDesigns';
 import HomeDesign from './Designs/HomeDesign';
@@ -99,11 +99,11 @@ const App = props => {
           )} />
 
           <Route path="/Admin" render={() => (
-            <AdminAuth>
+            <withAdminAuth>
               <MainDesign>
                 <Admin />
               </MainDesign>
-              </AdminAuth>    
+              </withAdminAuth>    
           )} />
       
        </Switch>
