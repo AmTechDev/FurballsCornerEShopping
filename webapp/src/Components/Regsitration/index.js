@@ -92,15 +92,17 @@ const Registration = props => {
                     <form onSubmit={handleSubmitForm}>
 
                         <TextfieldForm 
+                        label="Name"
                         type="text"
                         name="displayName"
                         value={displayName}
-                        placeholder="Enter Fullname"
+                        placeholder="Enter Full Name"
                         handleChange={e => setDisplayName(e.target.value)}
                         
                         />
 
                         <TextfieldForm 
+                        label="Email"
                         type="email"
                         name="email"
                         value={email}
@@ -110,6 +112,7 @@ const Registration = props => {
                         />
 
                         <TextfieldForm 
+                        label="Password"
                         type="password"
                         name="password"
                         value={password}
@@ -119,6 +122,7 @@ const Registration = props => {
                         />
 
                         <TextfieldForm 
+                        label="Confirm Password"
                         type="password"
                         name="confirmPassword"
                         value={confirmPassword}

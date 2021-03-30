@@ -22,3 +22,23 @@ export const manageResetPasswordAPI = (email) => {
     });
 };
 
+//export const invalidPasswordLogin = (email,password) => {
+  
+//    return new Promise((resolve, reject ) => {
+       
+
+//       auth.signInWithEmailAndPassword(email,password)
+//         .then(() => {
+//             resolve();
+
+//         })
+//         .catch(() => {
+             
+//             const err = [<div className="err">invalid password or email.</div>];
+//           reject(err);
+             
+            
+ //        });
+ //   });
+//};
+

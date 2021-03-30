@@ -12,7 +12,7 @@ import TextfieldForm from './../Forms/TextfieldForm';
 
 const mapState = ({ user }) => ({
     currentUser:user.currentUser
-   
+    //errUser: user.errUser
     
 });
 
@@ -23,6 +23,7 @@ const Loggin = props =>{
     const[email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorRecognition, setErrorRecognition] = useState('');
+    //const [loading, setLoading] = useState(false);
 
     useEffect(() =>{
         if(currentUser){
@@ -31,7 +32,11 @@ const Loggin = props =>{
         }
 
     }, [currentUser]);
-   
+    //useEffect(() => {
+    //    if(Array.isArray(errUser) && errUser.length > 0){
+    //        setErrorRecognition(errUser);
+    //    }
+    //}, [errUser]);
 
     const defaultform = () =>{
         setEmail('');
@@ -41,6 +46,7 @@ const Loggin = props =>{
 
     const handleSubmit = e =>{
         e.preventDefault();
+        //setLoading(true)
         dispatch(logInStart({email, password}));
         
     }
@@ -75,6 +81,7 @@ const Loggin = props =>{
                 <form onSubmit={handleSubmit}>
                 
                     <TextfieldForm 
+                        label="Email"
                         type="email"
                         name="email"
                         value={email}
@@ -83,6 +90,7 @@ const Loggin = props =>{
                     />
 
                     <TextfieldForm 
+                        label="Password"
                         type="password"
                         name="password"
                         value={ password}

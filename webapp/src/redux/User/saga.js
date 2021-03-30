@@ -1,6 +1,6 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import typesUser from  './types';
-import { manageResetPasswordAPI } from './support';
+import {  manageResetPasswordAPI } from './support';
 import './errStyle.css';
 import { logInSuccess, logOutSuccess, resetPasswordSuccess, errorUser} from './action';
 
@@ -23,24 +23,37 @@ export function* getCaptureFromUserAuth(user, additionalData={}) {
 }
 export function* elogIn({ payload: {email, password}}){
    //if (email!== password){
-       //const err = [<div className="err">Email and Password Doesn't Match</div>];
-      // yield put(
-      //    errorUser(err)
-      //  );
-      // return;
+   //    const err = [<div className="err">Email and Password Doesn't Match</div>];
+   //    yield put(
+   //       errorUser(err)
+   //     );
+   //    return;
      //Can't put error recognition it will always read the false value after re entering the correct password  
-    //}
+  //  }
     try{
         const { user } = yield auth.signInWithEmailAndPassword(email, password);
         yield getCaptureFromUserAuth(user);
-        //dispatch({
-        //    type: typesUser.LOG_IN_SUCCESS,
-        //    payload: true
-        //});
+        dispatch({
+            type: typesUser.LOG_IN_SUCCESS,
+            payload: true
+       });
     } catch(err){
         //console.log(err);
+        //alert(err)
 
-    }
+    };
+    //try{
+    //    yield call(invalidPasswordLogin, email);
+    //    yield put(
+    //        logInSuccess()
+    //    );
+       
+    //}catch(err){
+    //    yield put(
+    //        errorUser(err)
+    //    )
+            //console.log(err);
+    //    }
 }
 export function* onLogInStart(){
     yield takeLatest(typesUser.LOG_IN_START, elogIn);
@@ -52,6 +65,8 @@ export function* isAuthenticated(){
         yield getCaptureFromUserAuth(userAuth);
     } catch(err){
         //console.log(err);
+        
+
     }
 }
 export function* onUserCheckSession() {
@@ -65,6 +80,8 @@ export function* logOutUser(){
         )
     } catch(err){
         //console.log(err);
+      
+
     }
 }
 export function* onLogOutStart () {
@@ -94,6 +111,7 @@ export function* registerUser( {payload: {
        
     } catch(err){
         //console.log(err);
+
     }
 
 }
@@ -136,6 +154,7 @@ export function* resetPassword({ payload: { email}}){
             errorUser(err)
         )
             //console.log(err);
+
         }
 };
 

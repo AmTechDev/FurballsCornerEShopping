@@ -33,12 +33,48 @@
     line-height: 1;
     font-weight: 400;
     text-align: left;
-    padding: 10px 0px;
     margin: 10px auto;
     border: none;
     outline: none;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
     cursor: pointer;
 }
+.modalContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0,0,0,.3);
+  top: 0; left: 0;
+  
+ 
+}
+
+.modalWrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+.modalWrap .modal {
+  position: absolute;
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 60rem;
+  padding: 2rem;
+  background-color: white;
+  height: auto;
+  min-height: 40.0rem;
+  pointer-events: all;
+  max-height: 95vh;
+  overflow: auto;
+}
+
+  
 
 .btn{
     display: block;

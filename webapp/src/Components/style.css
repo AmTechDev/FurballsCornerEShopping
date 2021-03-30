@@ -14,7 +14,7 @@ header{
 .head a:hover{
     color: lightblue;
 }
-/*---------END OF HEADER-----------------------------------*/
+/*---------------------------------------------END OF HEADER------------------------------------------------------------*/
 /*-----------------------NAVIGATION-----------------*/
 nav{
     height: 12vh;
@@ -147,7 +147,7 @@ nav{
   }
   
   
-  /*------END OF NAVIGATION-------------------------------*/
+/*--------------------------------------------------END OF NAVIGATION--------------------------------------------------*/
 /*------------------------ADMIN STYLE--------------------------------*/
 .adminBTN{
   display: inline-block;
@@ -176,7 +176,84 @@ nav{
   color: royalblue;
   transition: all .4s ease-in-out;
 }
+/*--------------------------------------------------END OF ADMIN--------------------------------------------------------*/
+/*--------------------------SIDEBAR----------------------------------*/
+.sidebar{
+  width: 100%;
+  height: 100%;
 
+}
+
+.sidebar .menu{
+  margin: 3rem auto 0;
+}
+
+.sidebar .menu ul li{
+  position: relative;
+  width: 100%;
+  outline: none;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+ 
+  
+}
+.sidebar .menu ul li a{
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: royalblue;
+  cursor: pointer;
+}
+.sidebar .menu ul li a:hover{
+  color: #fff;
+  background-color: royalblue;
+}
+.sidebar .menu ul li span{
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: royalblue;
+  cursor: pointer;
+}
+.sidebar .menu ul li span:hover{
+  color: #fff;
+  background-color: royalblue;
+}
+/*------------------------------------END OF SIDEBAR--------------------------------------------------------------------*/
+/*-------------------ACCOUNT USER------------------------------------*/
+.accountUser{
+  display: block;
+  width: 100%;
+  margin: 3rem auto 1rem;
+}
+
+.accountUser ul li{
+  display: block;
+  width: 100%;
+}
+.accountUser .profile{
+  display: block;
+  width: 5.0rem;
+  margin: 0 auto;
+}
+.accountUser .profile img{
+  display: block;
+  width: 100%;
+}
+.accountUser .displayName{
+  display: block;
+  width: 100%;
+ 
+  text-align: center;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: royalblue;
+}
+/*-------------------------------------------END OF ACCOUNT USER-------------------------------------------------------*/
 /*------------LOGGIN AND LOGOUT--------------------------------------*/
 .subscontainer{
   display: block;
@@ -225,6 +302,7 @@ nav{
 .resetpass:hover{
   color: lightseagreen;
 }
+/*-----------------------------------------------END OF LOGIN AND LOGOUT------------------------------------------------*/
 /*----------SOCIAL ACCOUNT BTN----------------------------------*/
 .labelsocial{
   text-align: center;
@@ -246,7 +324,7 @@ nav{
 .here:hover{
   color:lightseagreen;
 }
-
+/*------------------------------------------------END OF SOCIAL BUTTON--------------------------------------------------*/
 /*-------------------TIMELINE----------------------------------------*/
 .centered{
     position:absolute;
@@ -307,9 +385,7 @@ nav{
   .mobbanner{
     display: none;
   }
-  /*-----------END OF TIMELINE-------------------*/
-  /*----------CATALOG----------------------------*/
-
+  /*------------------------------------------------END OF TIMELINE-----------------------------------------------------*/
   /*-----------------CATEGORIES----------------------------------*/
 .categories{
   display: flex;
@@ -372,11 +448,8 @@ nav{
   justify-content: center !important;
   margin: 10px auto 40px auto;
 }
-/*-----------END OF CATEGORIES----------------------*/
-
-
-  
-  /*----------FOOTER----------------------------*/
+/*----------------------------------------------------END OF CATEGORIES-------------------------------------------------*/
+/*----------FOOTER----------------------------*/
   footer {
     border-top: 1px solid #f1f1f1;
     background-color:royalblue;
@@ -430,8 +503,11 @@ nav{
     width: 5rem;
     height: 5rem;
   }
-  /*----------- END OF FOOTER-----------------*/
+/*----------------------------------------------- END OF FOOTER--------------------------------------------------------*/
    
+
+/*----------------------------------------------------MOBILE-----------------------------------------------------------*/
+/*------------------------------------------------RESPONSIVENESS-------------------------------------------------------*/
   /*------FOOTER RESPONSIVENESS------*/
   @media(max-width:767px){
     .footer-col{
@@ -763,3 +839,5 @@ nav{
   
   }   
 }
+
+/*------------------------------------------END OF MOBILE RESPONSIVENESS-----------------------------------------------*/

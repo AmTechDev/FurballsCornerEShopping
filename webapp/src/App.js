@@ -12,19 +12,23 @@ import Home from './Pages/Home';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import RecoverPass from './Pages/RecoverPass';
-import Account from './Pages/Account';
 import Aboutus from './Pages/AboutUs';
 import './main.css';
 
 //Admin
 import RedirectAdminPage from './Components/RedirectAdminPage';
 import Admin from './Pages/Admin';
+import AdminUIDesign from './Designs/AdminUIDesign';
 
+//Account
+import AccountUiDesign from './Designs/AccountUiDesign';
+import Account from './Pages/Account';
 //redux
 import { setCurrentUser, currentUser, userCheckSession} from './redux/User/action';
 
 //Firebase Authentication
 import { auth, handleUserAccount } from './firebase/code';
+
 
 
 
@@ -77,11 +81,14 @@ const App = props => {
                 <Login />
                  
             )} />
-            <Route path="/Account" render={() => (
+            <Route path="/Account" exact={true} render={() => (
             <WithAuth>
-              <MainDesign >
-               <Account />
-              </MainDesign>
+              
+              <AccountUiDesign>
+                <Account />
+              </AccountUiDesign>
+              
+              
             </WithAuth>
           )} />
           <Route path="/Register" render={() => (
@@ -99,11 +106,13 @@ const App = props => {
           )} />
 
           <Route path="/Admin" render={() => (
-            <withAdminAuth>
-              <MainDesign>
+           <withAdminAuth>
+             <AdminUIDesign>
                 <Admin />
-              </MainDesign>
-              </withAdminAuth>    
+              </AdminUIDesign>
+           </withAdminAuth>
+              
+              
           )} />
       
        </Switch>

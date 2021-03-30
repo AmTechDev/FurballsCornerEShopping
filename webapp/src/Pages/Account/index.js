@@ -3,9 +3,12 @@ import '../style.css'
 
 const Account = props => {
     return(
-        <h1>
-            Your Logged in!
-        </h1>
+        <div className="account">
+           <h1>
+             Your Logged in!
+            </h1> 
+        </div>
+        
     );
 };
 
