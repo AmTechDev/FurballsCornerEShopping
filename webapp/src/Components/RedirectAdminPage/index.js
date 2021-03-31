@@ -5,7 +5,7 @@ import { adminverification } from './../../service';
 import '../style.css';
 
 const mapState = ({ user }) => ({
-    currentUser: user.currentUser
+    currentUser: user.currentUser 
 })
 const RedirectAdminPage = props => {
     const { currentUser } = useSelector(mapState);

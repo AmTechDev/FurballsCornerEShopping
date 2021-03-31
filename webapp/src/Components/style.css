@@ -2,11 +2,14 @@
 header{
     height: 4vh;
     text-align: right;
-    margin-top: 0.8rem; 
+    margin-top: 0.5rem; 
     margin-right: 0.5rem;
 }
 .head{
   color:royalblue;
+}
+.head span{
+  margin-left: -0.4rem;
 }
 .head .alink{
     color:royalblue; 
@@ -14,6 +17,7 @@ header{
 .head a:hover{
     color: lightblue;
 }
+
 /*---------------------------------------------END OF HEADER------------------------------------------------------------*/
 /*-----------------------NAVIGATION-----------------*/
 nav{
@@ -57,25 +61,23 @@ nav{
   .box{
     width: 30%;
     align-items: center;
-   
     margin-left: -20%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-   
+    
    
   }
   
   .box .search-box{
     height: 50px;
     max-width: 400px;
+    margin-right: -5rem;
     
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   
   }
-  .search-box input{
+  .search-box input {
     position: relative;
-  
     width: 100%;
     height: 100%;
     background: #fff;
@@ -83,18 +85,14 @@ nav{
     border: none;
     padding-left: 20px;
     font-size: 18px; 
+
   }
-  .search-box .icon{
-   position: absolute;
-    width: 75px;
-    background: royalblue;
+  .box .icon {
+    
     color: #fff;
-    font-size: 1rem;
-    line-height: 50px;
-    text-align: center;
-    border: #fff 1px;
+   
   }
-  .search-box .icon i:hover{
+  .box .icon :hover{
     color: lightblue;
 }
   .searchicon{
@@ -111,7 +109,7 @@ nav{
   }
   .cart a{
     color:#fff;
-    font-size:1.5rem;
+   
   }
 
   .cart a:hover{

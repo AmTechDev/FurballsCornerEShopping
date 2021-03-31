@@ -3,11 +3,16 @@ import '../style.css';
 import iconIMG from './../../image/usericon.png';
 
 
+
 const AccountUser = props => {
+  //const mapState = ({ user }) => ({
+  //  currentUser: user.currentUser
+  //})
+  //const { currentUser } = useSelector(mapState);  
   const { currentUser } = props;
   const { displayName } = currentUser;
 
-
+  
   return (
     <div className="accountUser">
       <ul>

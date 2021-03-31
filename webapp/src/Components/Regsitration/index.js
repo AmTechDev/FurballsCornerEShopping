@@ -9,13 +9,13 @@ import TextfieldForm from './../Forms/TextfieldForm';
 import Button from './../Forms/Button';
 
 
-const initialState = {
-    displayName:'',
-    email:'',
-    password: '',
-    confirmPassword:'',
-    errorRecognition: []
-};
+//const initialState = {
+//    displayName:'',
+//    email:'',
+//    password: '',
+//    confirmPassword:'',
+//    errorRecognition: []
+//};
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,

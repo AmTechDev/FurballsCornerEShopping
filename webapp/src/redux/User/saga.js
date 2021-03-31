@@ -30,6 +30,7 @@ export function* elogIn({ payload: {email, password}}){
    //    return;
      //Can't put error recognition it will always read the false value after re entering the correct password  
   //  }
+  
     try{
         const { user } = yield auth.signInWithEmailAndPassword(email, password);
         yield getCaptureFromUserAuth(user);
@@ -38,8 +39,9 @@ export function* elogIn({ payload: {email, password}}){
             payload: true
        });
     } catch(err){
+        
         //console.log(err);
-        //alert(err)
+        alert(err);
 
     };
     //try{
@@ -65,7 +67,6 @@ export function* isAuthenticated(){
         yield getCaptureFromUserAuth(userAuth);
     } catch(err){
         //console.log(err);
-        
 
     }
 }

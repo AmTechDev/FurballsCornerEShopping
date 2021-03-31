@@ -1,6 +1,7 @@
 import { useAuthAdmin } from './../redux/ReactHooks';
 
-const withAdminAuth = props => useAuthAdmin(props) && props.childern;
+const WithAdminAuth = props => useAuthAdmin(props) && props.children;
 
-export default withAdminAuth;
+export default WithAdminAuth;
 
+ 

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { adminverification } from './../../service';
 
 
-const mapState = ({ user}) => ({
+const mapState = ({ user}) => ({ 
     currentUser: user.currentUser
 });
 const useAuthAdmin = props =>{

@@ -4,6 +4,15 @@ import  {NavLink, Link } from 'react-router-dom';
 import { logOutStart } from './../../redux/User/action';
 import '../style.css';
 
+//icon
+import CloseIcon from '@material-ui/icons/Close';
+import MenuIcon from '@material-ui/icons/Menu';
+import PhoneRoundedIcon from '@material-ui/icons/PhoneRounded';
+import LocalMallRoundedIcon from '@material-ui/icons/LocalMallRounded';
+import SearchIcon from '@material-ui/icons/Search';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+import Button from '@material-ui/core/Button';
 
 
 const mapState = ({user}) =>({
@@ -23,14 +32,16 @@ const signOut = () => {
         <div class="navigation">
         <header className="header">
             <div className="head">
-                <span><i className="fa fa-phone"></i> +(63)936-253-6583   </span>
-               
-               
+                <FormControlLabel 
+                control ={<PhoneRoundedIcon />}
+                /> 
+                <span>+(63)936-253-6583</span>
             </div>
+           
         </header>
         <nav className="nav">
             <div className="navbar" onClick={handleClick}>
-                <i className={click ? 'fa fa-times' : 'fa fa-bars'}></i>
+                <i className={click ? <CloseIcon/> : <MenuIcon />}></i>
             </div>
             <div className="logo">
              
@@ -45,17 +56,17 @@ const signOut = () => {
             </div>
              <div className="box">
                 <div className="search-box">
-                     <input type="text" placeholder="Type here..."/>
-                    <label for="" className="icon">
-                         <i className="fa fa-search"></i>
-                    </label>  
+                     <input type="text" placeholder="Search Products here..."/> 
                 </div>
+                <Button className="icon">
+                        <SearchIcon fontSize="large" />
+                </Button>
              </div>
              <label for=""  className="searchicon">
-                <i className="fa fa-search"></i>
+                  <SearchIcon fontSize="large" />
              </label>  
             <ul div className="cart">
-                <li><a href="#"><i className="fa fa-shopping-basket"></i></a></li>
+                <li><a href="#"><LocalMallRoundedIcon fontSize="large" /></a></li>
             </ul>
             <div className= {click ? "nav-links active" : "nav-links"}>
                 { currentUser &&(

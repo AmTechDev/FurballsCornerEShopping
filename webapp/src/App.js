@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
+
 //Components and Pages
-import withAdminAuth from './OrderedComponent/withAdminAuth';
+import WithAdminAuth from './OrderedComponent/withAdminAuth';
 import WithAuth from './OrderedComponent/withAuth';
 import MainDesign from './Designs/MainDesigns';
 import HomeDesign from './Designs/HomeDesign';
@@ -20,7 +21,7 @@ import RedirectAdminPage from './Components/RedirectAdminPage';
 import Admin from './Pages/Admin';
 import AdminUIDesign from './Designs/AdminUIDesign';
 
-//Account
+//Account 
 import AccountUiDesign from './Designs/AccountUiDesign';
 import Account from './Pages/Account';
 //redux
@@ -66,6 +67,7 @@ const App = props => {
  
   return (
     <div className="App">
+    
     <RedirectAdminPage />
        <Switch>
           <Route path="/" exact={true} render={() => (
@@ -106,11 +108,11 @@ const App = props => {
           )} />
 
           <Route path="/Admin" render={() => (
-           <withAdminAuth>
+           <WithAdminAuth>
              <AdminUIDesign>
                 <Admin />
               </AdminUIDesign>
-           </withAdminAuth>
+           </WithAdminAuth>
               
               
           )} />

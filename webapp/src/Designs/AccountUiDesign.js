@@ -5,6 +5,11 @@ import { logOutStart } from '../redux/User/action';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
+//icon
+import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const AccountUiDesign = props => {
@@ -23,16 +28,27 @@ const AccountUiDesign = props => {
             <ul>
               <li>
                 <Link to="/Account">
-                  My Profile
+                <FormControlLabel 
+                control ={<PersonRoundedIcon />}
+                label = ""
+                /> 
+                 My Profile
                 </Link>
               </li>
               <li>
-                <Link to="/admin">
-                  My Order
+                <Link to="/Account">
+                <FormControlLabel 
+                control ={<CreditCardIcon />}
+                label = ""
+                />  My Order
                 </Link>
               </li>
               <li>
                 <span className="logOut" onClick={() => logOut()}>
+                <FormControlLabel 
+                control ={<ExitToAppIcon />}
+                label = ""
+                /> 
                   Logout
                 </span>
               </li>
