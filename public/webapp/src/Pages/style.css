@@ -1,0 +1,65 @@
+
+  /*------------------HOME---------------------------*/
+.home{
+  height: calc(100% -6.5rem -6rem);
+}
+.Aboutus{
+  margin: 0 auto;
+  padding: 0 3rem;
+  margin-top: 4rem;
+  text-align: center;
+}
+.Aboutus h1{
+  color: royalblue;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  margin-bottom: 2rem;
+}
+.Aboutus h2{
+  color: #777;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.Aboutus p{
+  font-size: 1rem;
+  color: royalblue;
+  line-height: 5rem;
+  margin-bottom: 5rem;
+}
+/*--------------------------------------END OF HOME--------------------------------------------------------------------*/
+.Admin {
+ margin: auto;
+}
+.admin{
+  margin-left:35%;
+}
+.callAction {
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.handleProduct table tr{
+  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+}
+.handleProduct table tr .imgProd{
+  width: 12rem;
+  margin: 0 auto;
+}
+.handleProduct h2{
+  margin-top: 1.5rem;
+  color: royalblue;
+}
+.closebtn .btn:hover{
+  background-color: #444444;
+}
+/*------------------------------------------------END OF ADMIN------------------------------------------------------*/
+.account {
+  display: inline-block;
+  margin: auto;
+  margin-left:35% ;
+  margin-top: 1rem;
+ }
+

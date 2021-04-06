@@ -1,0 +1,7 @@
+const typesProducts = {
+    ADD_NEW_PRODUCT_START:'ADD_NEW_PRODUCT_START',
+    GET_PRODUCT_START: 'GET_PRODUCT_START',
+    SETTING_PRODUCTS: 'SETTING_PRODUCTS'
+};
+
+export default typesProducts;
